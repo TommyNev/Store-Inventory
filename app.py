@@ -120,7 +120,7 @@ def add_product():
         add.date_updated = datetime.datetime.now().date()
         add.save()
         clear()
-        print(f"{} is now in the inventory!".format(product_name))
+        print("{} is now in the inventory!".format(product_name))
 
 def backup_database():
     clear()
