@@ -122,6 +122,15 @@ def add_product():
         clear()
         print("{} is now in the inventory!".format(product_name))
 
+    except IntegrityError:
+        old = Product.get(Product.product_name == add.product_name)
+        old.product_quantity = add.product_quantity
+        old.product_price = add.product_price
+        old.date_updated = add.date_updated
+        old.save()
+        clear()
+        print("{} has been updated.".format(old.product_name))
+
 def backup_database():
     clear()
     backup_file = "Inventory_Backup.csv"
@@ -156,8 +165,8 @@ def clear():
 
 menu = OrderedDict([
         ('a', add_product),
-        ('v', view_products),
-        ('b', backup_data),
+        ('v', view_product),
+        ('b', backup_database),
     ])
 
 if __name__ == '__main__':
