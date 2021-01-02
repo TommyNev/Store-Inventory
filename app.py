@@ -43,7 +43,7 @@ def read_csv():
                     product_price = row['product_price'],
                     date_updated = row['date_updated'],
                 ).save()
-            except ValueError:
+            except IntegrityError:
                 add = Product.get(product_name = row['product_name'])
                 add.product_name = row['product_name']
                 add.product_quantity = row['product_name']
